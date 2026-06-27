@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft radial halo: opaque white center fading to transparent. Tinted to
+     the band color at runtime via setColorFilter (SRC_ATOP keeps the alpha
+     falloff, giving a real glow rather than a hard disc). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="50%"
+        android:startColor="#FFFFFFFF"
+        android:centerColor="#80FFFFFF"
+        android:endColor="#00FFFFFF" />
+</shape>
