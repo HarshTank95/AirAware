@@ -46,3 +46,6 @@ app.*.map.json
 
 # Local dev run logs
 run_*.txt
+
+# Icon design previews
+tool/preview/

@@ -26,6 +26,7 @@ import '../widgets/living_background.dart';
 import '../widgets/particle_field.dart';
 import 'search_screen.dart';
 import 'settings_screen.dart';
+import 'share_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -422,6 +423,21 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     }
   }
 
+  void _openShare() {
+    final reading = _reading;
+    final place = _place;
+    if (reading == null || place == null) return;
+    HapticFeedback.lightImpact();
+    Navigator.of(context).push(
+      _sharedAxisRoute(ShareScreen(
+        reading: reading,
+        placeLabel: place.label,
+        sensitive: _prefs.sensitive,
+        reduceMotion: _reduceMotion,
+      )),
+    );
+  }
+
   PageRoute<T> _sharedAxisRoute<T>(Widget page) {
     return PageRouteBuilder<T>(
       transitionDuration: Duration(milliseconds: _reduceMotion ? 0 : 350),
@@ -531,6 +547,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ),
           ),
           _iconBtn(Icons.search, _openSearch),
+          if (_reading != null) _iconBtn(Icons.ios_share, _openShare),
           _iconBtn(Icons.refresh, () {
             HapticFeedback.lightImpact();
             _refresh();
